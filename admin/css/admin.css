@@ -44,6 +44,65 @@ body {
 
 a { color: var(--clr-accent); text-decoration: none; }
 
+/* ---- GTEC College Banner ---- */
+.gtec-banner {
+    width: 100%;
+    background: #003580;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0.55rem 1.5rem;
+    border-bottom: 3px solid #f5c518;
+    position: relative;
+    z-index: 1100;
+    flex-shrink: 0;
+}
+.gtec-banner__logo {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.gtec-banner__logo-abbr {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #003580;
+    line-height: 1;
+    text-align: center;
+}
+.gtec-banner__info { text-align: center; flex: 1; }
+.gtec-banner__name {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 800;
+    color: #f5c518;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+}
+.gtec-banner__details {
+    font-size: clamp(0.62rem, 1.2vw, 0.78rem);
+    color: #ffe88a;
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+.gtec-banner__location {
+    font-size: clamp(0.65rem, 1.2vw, 0.82rem);
+    color: #f5c518;
+    font-weight: 700;
+    margin-top: 0.1rem;
+}
+
 /* ---------- Admin Login Page ---------- */
 .login-wrapper {
     min-height: 100vh;
