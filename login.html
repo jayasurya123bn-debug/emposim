@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to Emposim 2026 — GTEC National Level Technical Symposium Portal.">
+    <title>Login | Emposim 2026 — GTEC Symposium</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-tabs {
+            display: flex;
+            background: rgba(255,255,255,0.04);
+            border-radius: var(--radius-full);
+            padding: 4px;
+            margin-bottom: 2rem;
+        }
+        .login-tab {
+            flex: 1;
+            padding: 0.7rem;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: var(--clr-text-muted);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+        .login-tab.active {
+            background: var(--grad-primary);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+        }
+        .login-tab:hover:not(.active) {
+            color: var(--clr-text);
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            color: var(--clr-text-muted);
+            font-size: 0.8rem;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--clr-border);
+        }
+        .link-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+        }
+        .link-row a {
+            color: var(--clr-accent);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .link-row a:hover {
+            color: var(--clr-primary);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__logo">
+            <span class="header__logo-icon">🎓</span>
+            Emposim
+        </div>
+        <nav class="header__nav">
+            <a href="index.html">Home</a>
+            <a href="login.html" class="active">Login</a>
+            <a href="register.html">Register</a>
+            <a href="status.html">Check Status</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-wrapper" style="padding-top: 100px;">
+        <div class="container container--sm">
+            <div class="card card--static slide-up" style="max-width: 450px; margin: 0 auto;">
+                <div class="text-center mb-xl">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔐</div>
+                    <h1 class="text-gradient" style="font-size: 1.8rem;">Welcome Back</h1>
+                    <p class="text-muted mt-sm">Sign in to your Emposim account</p>
+                </div>
+
+                <!-- Login Method Tabs -->
+                <div class="login-tabs">
+                    <button class="login-tab active" id="tab-email" onclick="switchTab('email')">📧 Email</button>
+                    <button class="login-tab" id="tab-phone" onclick="switchTab('phone')">📱 Phone</button>
+                </div>
+
+                <!-- Alert Area -->
+                <div id="alert-area"></div>
+
+                <!-- Login Form -->
+                <form id="login-form" novalidate>
+                    <!-- Email Input (default) -->
+                    <div class="form-group" id="field-email">
+                        <label class="form-label" for="login-email">Email Address</label>
+                        <input type="email" id="login-email" class="form-input" 
+                               placeholder="you@example.com" required>
+                        <p class="form-error" id="error-email">Please enter a valid email address.</p>
+                    </div>
+
+                    <!-- Phone Input (hidden by default) -->
+                    <div class="form-group" id="field-phone" style="display:none;">
+                        <label class="form-label" for="login-phone">Phone Number</label>
+                        <input type="tel" id="login-phone" class="form-input" 
+                               placeholder="10-digit mobile number" pattern="[0-9]{10}">
+                        <p class="form-error" id="error-phone">Please enter a valid 10-digit phone number.</p>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label class="form-label" for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-input" 
+                               placeholder="Enter your password" required>
+                        <p class="form-error" id="error-password">Password is required.</p>
+                    </div>
+
+                    <!-- Forgot Password & Remember Me -->
+                    <div class="link-row">
+                        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;color:var(--clr-text-muted);font-size:0.85rem;">
+                            <input type="checkbox" id="remember-me" style="accent-color:var(--clr-primary);">
+                            Remember me
+                        </label>
+                        <a href="forgot-password.html">Forgot Password?</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" id="login-btn" class="btn btn--primary btn--lg btn--block" style="margin-top:1.5rem;">
+                        Sign In →
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="divider">or</div>
+
+                <!-- Register Link -->
+                <div class="text-center">
+                    <p style="color:var(--clr-text-muted);font-size:0.9rem;">
+                        Don't have an account? 
+                        <a href="register.html" style="color:var(--clr-accent);font-weight:600;">Register Now</a>
+                    </p>
+                </div>
+
+                <!-- Check Status Link -->
+                <div class="text-center mt-md">
+                    <a href="status.html" style="font-size:0.85rem;color:var(--clr-text-muted);">
+                        📋 Check your registration status
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
