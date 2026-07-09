@@ -1,0 +1,3 @@
+# This directory stores uploaded payment screenshots.
+# It is created at runtime by the PHP upload handler.
+# The .gitkeep file ensures the directory is tracked by Git.

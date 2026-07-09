@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Select your event topic for Emposim 2026 at GTEC. Choose from Paper Presentation, Coding Challenge, Hackathon and more.">
+    <title>Select Topic | Emposim 2026 — GTEC Symposium</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ---- Topic Selection Specific Styles ---- */
+        .topic-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 0.75rem;
+        }
+
+        .topic-option:hover {
+            border-color: rgba(102, 126, 234, 0.4);
+            background: rgba(102, 126, 234, 0.05);
+            transform: translateX(4px);
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .topic-option input[type="radio"] {
+            display: none;
+        }
+
+        .topic-option input[type="radio"]:checked + .topic-option__radio {
+            border-color: var(--clr-primary);
+            background: var(--clr-primary);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .topic-option input[type="radio"]:checked + .topic-option__radio::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .topic-option:has(input:checked) {
+            border-color: var(--clr-primary);
+            background: rgba(102, 126, 234, 0.08);
+        }
+
+        .topic-option__radio {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--clr-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .topic-option__radio::after {
+            content: '✓';
+            font-size: 0.7rem;
+            color: #fff;
+            opacity: 0;
+            transform: scale(0);
+            transition: var(--transition);
+        }
+
+        .topic-option__info {
+            flex: 1;
+        }
+
+        .topic-option__name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--clr-text);
+        }
+
+        .topic-option__meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.25rem;
+            font-size: 0.8rem;
+            color: var(--clr-text-muted);
+        }
+
+        .topic-option__fee {
+            font-weight: 700;
+            color: var(--clr-success);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__logo">
+            <span class="header__logo-icon">🎓</span>
+            Emposim
+        </div>
+        <nav class="header__nav">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-wrapper" style="padding-top: 100px;">
+        <div class="container container--sm">
+            <!-- Step Indicator -->
+            <div class="steps">
+                <div class="step completed">✓</div>
+                <div class="step-line completed"></div>
+                <div class="step completed">✓</div>
+                <div class="step-line completed"></div>
+                <div class="step completed">✓</div>
+                <div class="step-line completed"></div>
+                <div class="step active">4</div>
+                <div class="step-line"></div>
+                <div class="step">5</div>
+                <div class="step-line"></div>
+                <div class="step">6</div>
+            </div>
+
+            <!-- Selection Card -->
+            <div class="card card--static slide-up">
+                <div class="text-center mb-xl">
+                    <h1 class="text-gradient" style="font-size: 1.8rem;">Select Your Event</h1>
+                    <p class="text-muted mt-sm">Choose the event you'd like to participate in</p>
+                </div>
+
+                <!-- Alert Area -->
+                <div id="alert-area"></div>
+
+                <!-- Topic Selection Form -->
+                <form id="topic-form">
+                    <div id="topics-list">
+                        <!-- Radio button options rendered by JS -->
+                    </div>
+
+                    <button type="submit" id="continue-btn" class="btn btn--primary btn--lg btn--block mt-xl">
+                        Continue →
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/select-topic.js"></script>
+</body>
+</html>

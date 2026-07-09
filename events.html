@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore events at Emposim 2026 — Paper Presentation, Coding Challenge, Hackathon and more at GTEC.">
+    <title>Events & Venue | Emposim 2026 — GTEC Symposium</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__logo">
+            <span class="header__logo-icon">🎓</span>
+            Emposim
+        </div>
+        <nav class="header__nav">
+            <a href="index.html">Home</a>
+            <a href="register.html">Register</a>
+            <a href="events.html" class="active">Events</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main style="padding-top: 100px; padding-bottom: 60px;">
+        <div class="container">
+            <!-- Step Indicator -->
+            <div class="steps">
+                <div class="step completed">✓</div>
+                <div class="step-line completed"></div>
+                <div class="step completed">✓</div>
+                <div class="step-line completed"></div>
+                <div class="step active">3</div>
+                <div class="step-line"></div>
+                <div class="step">4</div>
+                <div class="step-line"></div>
+                <div class="step">5</div>
+                <div class="step-line"></div>
+                <div class="step">6</div>
+            </div>
+
+            <!-- Section Title -->
+            <div class="text-center mb-xl slide-up">
+                <h1 class="text-gradient">Symposium Events</h1>
+                <p class="text-muted mt-sm">Explore our exciting lineup of technical events at Emposim 2026</p>
+            </div>
+
+            <!-- Events Grid (populated by JS) -->
+            <div class="events-grid" id="events-grid">
+                <!-- Event cards will be injected here by events.js -->
+            </div>
+
+            <!-- Venue / Location Section -->
+            <div class="text-center mt-2xl mb-xl">
+                <h2 class="text-gradient" style="font-size: 1.6rem;">📍 Event Venue</h2>
+            </div>
+
+            <div class="location-card slide-up">
+                <div class="location-card__map">
+                    <!-- Static map placeholder using OpenStreetMap embed style -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://maps.google.com/?q=GTEC+Vellore&size=400x220" 
+                         alt="GTEC Campus Location QR"
+                         style="opacity: 0.4; width: 120px; height: 120px; object-fit: contain;">
+                    <div style="position: absolute; text-align: center; padding: 1rem;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🗺️</div>
+                        <p style="font-size: 0.85rem; color: var(--clr-text-muted);">Scan QR or search<br>"GTEC Vellore" on Google Maps</p>
+                    </div>
+                </div>
+                <div class="location-card__info">
+                    <h3>Ganadipathy Tulsi's Jain Engineering College</h3>
+                    <p class="mt-md">
+                        📍 <strong>Address:</strong><br>
+                        Kaniyambadi – Vellore Road,<br>
+                        Vellore – 632 102,<br>
+                        Tamil Nadu, India.
+                    </p>
+                    <p class="mt-md" style="color: var(--clr-accent);">
+                        📞 Phone: +91 416 220 0123
+                    </p>
+                    <p class="mt-sm" style="color: var(--clr-accent);">
+                        📧 Email: info@gtec.ac.in
+                    </p>
+                    <a href="select-topic.html" class="btn btn--primary mt-lg">
+                        Select Your Event →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/events.js"></script>
+</body>
+</html>

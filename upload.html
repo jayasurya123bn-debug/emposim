@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upload your payment receipt screenshot for Emposim 2026 at GTEC.">
+    <title>Upload Receipt | Emposim 2026 — GTEC Symposium</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .success-screen {
+            display: none;
+            text-align: center;
+            animation: fadeSlideUp 0.6s ease;
+        }
+
+        .success-screen.visible {
+            display: block;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--grad-success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 230, 118, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .file-info__icon {
+            font-size: 1.5rem;
+        }
+
+        .file-info__details {
+            flex: 1;
+        }
+
+        .file-info__name {
+            font-weight: 600;
+            color: var(--clr-text);
+        }
+
+        .file-info__size {
+            color: var(--clr-text-muted);
+            font-size: 0.8rem;
+        }
+
+        .file-info__remove {
+            background: none;
+            border: none;
+            color: var(--clr-danger);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.25rem;
+            transition: var(--transition);
+        }
+
+        .file-info__remove:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__logo">
+            <span class="header__logo-icon">🎓</span>
+            Emposim
+        </div>
+        <nav class="header__nav">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-wrapper" style="padding-top: 100px;">
+        <div class="container container--sm">
+            <!-- Upload Form (hidden after success) -->
+            <div id="upload-form-area">
+                <div class="card card--static slide-up">
+                    <div class="text-center mb-xl">
+                        <h1 class="text-gradient" style="font-size: 1.8rem;">Upload Payment Receipt</h1>
+                        <p class="text-muted mt-sm">Upload a screenshot of your payment for verification</p>
+                    </div>
+
+                    <!-- Alert Area -->
+                    <div id="alert-area"></div>
+
+                    <!-- Upload Form -->
+                    <form id="upload-form" enctype="multipart/form-data">
+                        <!-- Drag & Drop Zone -->
+                        <div class="upload-zone" id="upload-zone">
+                            <div class="upload-zone__icon">📤</div>
+                            <p class="upload-zone__text">
+                                Drag & drop your screenshot here, or <span>click to browse</span>
+                            </p>
+                            <p class="text-muted mt-sm" style="font-size: 0.8rem;">
+                                Accepted: JPG, PNG • Max size: 2 MB
+                            </p>
+                            <input type="file" id="file-input" name="screenshot" 
+                                   accept="image/jpeg, image/png" style="display: none;">
+                        </div>
+
+                        <!-- File Info (shown after file selection) -->
+                        <div id="file-info" style="display: none;"></div>
+
+                        <!-- Preview -->
+                        <div class="upload-preview" id="upload-preview">
+                            <img id="preview-img" src="" alt="Payment receipt preview">
+                            <p class="upload-preview__name" id="preview-name"></p>
+                        </div>
+
+                        <!-- Upload Button -->
+                        <button type="submit" id="upload-btn" class="btn btn--primary btn--lg btn--block mt-xl" disabled>
+                            📤 Upload Screenshot
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Success Screen (shown after successful upload) -->
+            <div class="success-screen" id="success-screen">
+                <div class="card card--static">
+                    <div class="success-icon">✅</div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Registration Complete!</h2>
+                    <p class="text-muted">
+                        Your payment receipt has been uploaded successfully.<br>
+                        Our team will verify your payment and approve your registration.
+                    </p>
+
+                    <div style="margin-top: 2rem; padding: 1.25rem; background: rgba(0, 212, 255, 0.06); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: var(--radius-md);">
+                        <p style="font-size: 0.9rem; color: var(--clr-accent);">
+                            📧 You will receive a confirmation email once your registration is approved.
+                        </p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <p class="text-muted" style="font-size: 0.85rem;">Registration ID</p>
+                        <p style="font-size: 1.4rem; font-weight: 700; color: var(--clr-success);" id="reg-id-display">#—</p>
+                    </div>
+
+                    <a href="index.html" class="btn btn--outline btn--block mt-xl">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/upload.js"></script>
+</body>
+</html>

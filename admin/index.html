@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Login — Emposim 2026 GTEC Symposium Management">
+    <title>Admin Login | Emposim 2026</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <main class="login-wrapper">
+        <div class="login-card">
+            <div class="login-card__icon">🔐</div>
+            <h1>Admin Panel</h1>
+            <p>Sign in to manage Emposim registrations</p>
+
+            <!-- Alert Area -->
+            <div id="alert-area"></div>
+
+            <!-- Login Form -->
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Enter username" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" id="login-btn" class="btn btn--primary btn--block" style="margin-top: 1.5rem;">
+                    Sign In →
+                </button>
+            </form>
+
+            <p style="margin-top: 1.5rem; font-size: 0.75rem; color: var(--clr-text-muted);">
+                Emposim Admin Panel &copy; 2026 GTEC
+            </p>
+        </div>
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

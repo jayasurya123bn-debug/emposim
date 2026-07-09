@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard — Manage registrations, payments, and verifications for Emposim 2026.">
+    <title>Dashboard | Emposim Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- ======== Sidebar ======== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__header">
+                <div class="sidebar__logo">🎓</div>
+                <div>
+                    <div class="sidebar__title">Emposim</div>
+                    <div class="sidebar__subtitle">Admin Panel</div>
+                </div>
+            </div>
+
+            <nav class="sidebar__nav">
+                <button class="sidebar__link active" data-section="registrations" onclick="switchSection('registrations', this)">
+                    <span class="sidebar__link-icon">📋</span>
+                    Registrations
+                </button>
+                <button class="sidebar__link" data-section="payments" onclick="switchSection('payments', this)">
+                    <span class="sidebar__link-icon">💳</span>
+                    Payments
+                </button>
+                <button class="sidebar__link" data-section="verification" onclick="switchSection('verification', this)">
+                    <span class="sidebar__link-icon">✅</span>
+                    Verification
+                </button>
+            </nav>
+
+            <div class="sidebar__footer">
+                <button class="sidebar__logout" onclick="adminLogout()">
+                    <span>🚪</span>
+                    Sign Out
+                </button>
+            </div>
+        </aside>
+
+        <!-- ======== Main Content ======== -->
+        <main class="admin-main">
+            <!-- Stats Row -->
+            <div class="stats-row" id="stats-row">
+                <div class="stat-card">
+                    <div class="stat-card__label">Total Registrations</div>
+                    <div class="stat-card__value stat-card__value--primary" id="stat-total">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__label">Approved</div>
+                    <div class="stat-card__value stat-card__value--success" id="stat-approved">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__label">Pending</div>
+                    <div class="stat-card__value stat-card__value--warning" id="stat-pending">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__label">Rejected</div>
+                    <div class="stat-card__value stat-card__value--danger" id="stat-rejected">0</div>
+                </div>
+            </div>
+
+            <!-- ======== Registrations Section ======== -->
+            <div class="content-section active" id="section-registrations">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>📋 Student Registrations</h2>
+                        <input type="text" class="table-search" id="search-registrations" 
+                               placeholder="🔍 Search students...">
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>College</th>
+                                    <th>Year</th>
+                                    <th>Department</th>
+                                    <th>Status</th>
+                                    <th>Registered</th>
+                                </tr>
+                            </thead>
+                            <tbody id="registrations-tbody">
+                                <!-- Populated by dashboard.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======== Payments Section ======== -->
+            <div class="content-section" id="section-payments">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>💳 Payment Details</h2>
+                        <input type="text" class="table-search" id="search-payments" 
+                               placeholder="🔍 Search payments...">
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Student</th>
+                                    <th>Event</th>
+                                    <th>Fee</th>
+                                    <th>Mode</th>
+                                    <th>Screenshot</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-tbody">
+                                <!-- Populated by dashboard.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======== Verification Section ======== -->
+            <div class="content-section" id="section-verification">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>✅ Verify & Approve Registrations</h2>
+                        <input type="text" class="table-search" id="search-verification" 
+                               placeholder="🔍 Search...">
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Student</th>
+                                    <th>Email</th>
+                                    <th>Event</th>
+                                    <th>Fee</th>
+                                    <th>Screenshot</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="verification-tbody">
+                                <!-- Populated by dashboard.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Screenshot Modal -->
+    <div class="modal-overlay" id="screenshot-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modal-img" src="" alt="Payment Screenshot">
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
