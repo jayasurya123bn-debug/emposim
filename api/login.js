@@ -1,10 +1,10 @@
 // ============================================================
 // EMPOSIM — Student Login API (Vercel Serverless)
 // ============================================================
-import { sql } from '@vercel/postgres';
-import bcrypt from 'bcryptjs';
+const { sql } = require('@vercel/postgres');
+const bcrypt = require('bcryptjs');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
