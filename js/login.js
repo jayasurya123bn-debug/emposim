@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
         loginBtn.classList.add('btn--loading');
         loginBtn.disabled = true;
 
-        // Send to backend
-        fetch('php/login_student.php', {
+        // Send to Vercel API backend
+        fetch('/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

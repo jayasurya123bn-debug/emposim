@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loginBtn.textContent = 'Signing in...';
 
         // Send to backend
-        fetch('php/login.php', {
+        fetch('/api/admin-login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: username, password: password })

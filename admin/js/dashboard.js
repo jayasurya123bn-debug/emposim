@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * Load registration data from backend
  */
 function loadData() {
-    fetch('php/get_registrations.php')
+    fetch('/api/get-registrations')
         .then(function (res) { return res.json(); })
         .then(function (data) {
             if (data.success && data.registrations) {
@@ -230,7 +230,7 @@ function renderVerification(data) {
  */
 function updateStatus(studentId, newStatus) {
     // Try backend first
-    fetch('php/update_status.php', {
+    fetch('/api/update-status', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ student_id: studentId, status: newStatus })

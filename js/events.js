@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ---- Fetch events from backend (with fallback) ----
-    fetch('php/get_events.php')
+    fetch('/api/get-events')
         .then(function (response) { return response.json(); })
         .then(function (data) {
             if (data.success && data.events.length > 0) {

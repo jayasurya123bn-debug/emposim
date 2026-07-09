@@ -150,8 +150,8 @@ document.addEventListener('DOMContentLoaded', function () {
         submitBtn.classList.add('btn--loading');
         submitBtn.disabled = true;
 
-        // Send to PHP backend
-        fetch('php/register.php', {
+        // Send to Vercel API backend
+        fetch('/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)

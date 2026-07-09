@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var queryParam = email ? 'email=' + encodeURIComponent(email) : 'id=' + studentId;
 
-        fetch('php/check_status.php?' + queryParam)
+        fetch('/api/check-status?' + queryParam)
             .then(function (res) { return res.json(); })
             .then(function (data) {
                 checkBtn.classList.remove('btn--loading');
