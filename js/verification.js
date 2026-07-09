@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ---- Configuration ----
     const TOTAL_DURATION = 4000;   // Total animation time in ms
     const UPDATE_INTERVAL = 50;    // How often we update the progress bar
-    const REDIRECT_URL = 'register.html';
+    const REDIRECT_URL = 'login.html';
 
     // Status messages shown at different progress percentages
     const statusMessages = [
