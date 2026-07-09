@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/php/register.php", "destination": "/api/register" },
+    { "source": "/php/login_student.php", "destination": "/api/login" },
+    { "source": "/php/check_status.php", "destination": "/api/check-status" },
+    { "source": "/php/get_events.php", "destination": "/api/get-events" },
+    { "source": "/admin/php/login.php", "destination": "/api/admin-login" },
+    { "source": "/admin/php/get_registrations.php", "destination": "/api/get-registrations" },
+    { "source": "/admin/php/update_status.php", "destination": "/api/update-status" },
+    { "source": "/admin/php/get_payments.php", "destination": "/api/get-registrations" }
+  ]
+}
