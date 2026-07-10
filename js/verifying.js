@@ -10,8 +10,12 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Auto-redirect to upload page after 2 seconds
+    // Auto-redirect after 2 seconds
     setTimeout(function () {
-        window.location.href = 'upload.html';
+        if (sessionStorage.getItem('payment_mode') === 'offline') {
+            window.location.href = 'status.html';
+        } else {
+            window.location.href = 'upload.html';
+        }
     }, 2000);
 });
