@@ -143,6 +143,7 @@ function renderRegistrations(data) {
             '<td>' + escapeHtml(r.department) + '</td>' +
             '<td>' + getBadgeHtml(r.status) + '</td>' +
             '<td style="font-size:0.75rem;color:var(--clr-text-muted)">' + formatDate(r.created_at) + '</td>' +
+            '<td><button class="btn-action btn-action--reject" style="padding:0.25rem 0.5rem;font-size:0.8rem;" onclick="deleteRegistration(' + r.id + ')">🗑️ Delete</button></td>' +
         '</tr>';
     }).join('');
 }
@@ -374,4 +375,32 @@ function escapeHtml(text) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(text));
     return div.innerHTML;
+}
+
+/**
+ * Delete a registration
+ */
+function deleteRegistration(studentId) {
+    if (!confirm('Are you sure you want to permanently delete registration #' + studentId + '?')) return;
+    
+    fetch('/api/delete-registration', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ student_id: studentId })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+        if (data.success) {
+            allRegistrations = allRegistrations.filter(function(r) { return r.id != studentId; });
+            renderAll();
+        } else {
+            alert('Failed to delete: ' + data.message);
+        }
+    })
+    .catch(function (err) {
+        alert('Network error. Could not delete.');
+        // Fallback for demo mode
+        allRegistrations = allRegistrations.filter(function(r) { return r.id != studentId; });
+        renderAll();
+    });
 }

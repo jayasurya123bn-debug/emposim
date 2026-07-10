@@ -113,7 +113,7 @@
             <div class="card card--static slide-up">
                 <div class="text-center mb-xl">
                     <h1 class="text-gradient" style="font-size: 1.8rem;">Payment Checkout</h1>
-                    <p class="text-muted mt-sm">Scan the QR code below to make your payment via UPI</p>
+                    <p class="text-muted mt-sm" id="payment-instruction">Scan the QR code below to make your payment via UPI</p>
                 </div>
 
                 <!-- Payment Summary -->
@@ -149,7 +149,7 @@
                 </div>
 
                 <!-- QR Code -->
-                <div class="text-center">
+                <div class="text-center" id="qr-section">
                     <div class="qr-container">
                         <img id="qr-code" 
                              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=gtec@upi%26pn=GTEC%20Emposim%26am=100"

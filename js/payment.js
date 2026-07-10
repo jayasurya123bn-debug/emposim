@@ -34,9 +34,15 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('pay-mode').textContent   = paymentMode.charAt(0).toUpperCase() + paymentMode.slice(1);
     document.getElementById('pay-total').textContent   = '₹' + parseFloat(eventFee).toFixed(0);
 
-    // ---- Generate QR with dynamic amount ----
-    var upiString = 'upi://pay?pa=gtec@upi&pn=GTEC%20Emposim&am=' + parseFloat(eventFee).toFixed(2);
-    qrCode.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(upiString);
+    if (paymentMode === 'offline') {
+        document.getElementById('payment-instruction').textContent = 'Please pay the cash at the venue counter on the event day.';
+        document.getElementById('qr-section').style.display = 'none';
+        proceedBtn.textContent = '✅ I Will Pay at the Venue — Proceed';
+    } else {
+        // ---- Generate QR with dynamic amount ----
+        var upiString = 'upi://pay?pa=gtec@upi&pn=GTEC%20Emposim&am=' + parseFloat(eventFee).toFixed(2);
+        qrCode.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(upiString);
+    }
 
     // ---- Countdown Timer (5 minutes = 300 seconds) ----
     var totalSeconds = 5 * 60; // 300 seconds
@@ -98,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var studentId = sessionStorage.getItem('student_id');
 
         if (studentId) {
-            fetch('php/select_topic.php', {
+            fetch('/api/select-topic', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
