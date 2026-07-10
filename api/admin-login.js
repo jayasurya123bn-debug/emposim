@@ -11,7 +11,7 @@ module.exports = async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).json({ success: false, message: 'Method not allowed.' });
 
     const ADMIN_USERNAME = 'admin';
-    const ADMIN_PASSWORD = 'admin123';
+    const ADMIN_PASSWORD = '8778850438';
 
     const { username = '', password = '' } = req.body;
 
