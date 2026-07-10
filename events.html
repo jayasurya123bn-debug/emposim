@@ -68,14 +68,13 @@
             </div>
 
             <div class="location-card slide-up">
-                <div class="location-card__map">
+                <div class="location-card__map" style="cursor: pointer;" onclick="window.open('https://maps.app.goo.gl/x9aycccUYKcLsHB48', '_blank')">
                     <!-- Static map placeholder using OpenStreetMap embed style -->
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://maps.google.com/?q=GTEC+Vellore&size=400x220" 
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://maps.app.goo.gl/x9aycccUYKcLsHB48&size=400x400" 
                          alt="GTEC Campus Location QR"
-                         style="opacity: 0.4; width: 120px; height: 120px; object-fit: contain;">
-                    <div style="position: absolute; text-align: center; padding: 1rem;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🗺️</div>
-                        <p style="font-size: 0.85rem; color: var(--clr-text-muted);">Scan QR or search<br>"GTEC Vellore" on Google Maps</p>
+                         style="opacity: 1; width: 140px; height: 140px; object-fit: contain; margin-bottom: 0.5rem; z-index: 2; position: relative;">
+                    <div style="text-align: center; padding: 0.5rem; z-index: 2; position: relative; background: var(--clr-surface-light); border-radius: var(--radius-sm);">
+                        <p style="font-size: 0.85rem; color: var(--clr-text-main); font-weight: 500;">Scan QR or Click Here<br>to view on Google Maps</p>
                     </div>
                 </div>
                 <div class="location-card__info">
