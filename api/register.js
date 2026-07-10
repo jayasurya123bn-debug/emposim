@@ -21,7 +21,10 @@ module.exports = async function handler(req, res) {
             phone = '',
             college = '',
             year = '',
-            department = ''
+            department = '',
+            team_member_2 = '',
+            team_member_3 = '',
+            team_member_4 = ''
         } = req.body;
 
         // ---- Validate ----
@@ -47,8 +50,19 @@ module.exports = async function handler(req, res) {
 
         // ---- Insert into DB ----
         const result = await sql`
-            INSERT INTO registrations (student_name, email, password, phone, college, year, department)
-            VALUES (${student_name.trim()}, ${email.toLowerCase().trim()}, ${hashed}, ${phone.trim()}, ${college.trim()}, ${year.trim()}, ${department.trim()})
+            INSERT INTO registrations (student_name, email, password, phone, college, year, department, team_member_2, team_member_3, team_member_4)
+            VALUES (
+                ${student_name.trim()}, 
+                ${email.toLowerCase().trim()}, 
+                ${hashed}, 
+                ${phone.trim()}, 
+                ${college.trim()}, 
+                ${year.trim()}, 
+                ${department.trim()},
+                ${team_member_2.trim() || null},
+                ${team_member_3.trim() || null},
+                ${team_member_4.trim() || null}
+            )
             RETURNING id
         `;
 

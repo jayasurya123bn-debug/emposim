@@ -143,7 +143,10 @@ document.addEventListener('DOMContentLoaded', function () {
             phone:        document.getElementById('phone').value.trim(),
             college:      document.getElementById('college').value.trim(),
             year:         document.getElementById('year').value,
-            department:   document.getElementById('department').value
+            department:   document.getElementById('department').value,
+            team_member_2: document.getElementById('team_member_2').value.trim(),
+            team_member_3: document.getElementById('team_member_3').value.trim(),
+            team_member_4: document.getElementById('team_member_4').value.trim()
         };
 
         // Show loading state

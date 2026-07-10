@@ -133,9 +133,15 @@ function renderRegistrations(data) {
     }
 
     tbody.innerHTML = data.map(function (r) {
+        var teamHtml = '';
+        if (r.team_member_2 || r.team_member_3 || r.team_member_4) {
+            var members = [r.team_member_2, r.team_member_3, r.team_member_4].filter(Boolean).join(', ');
+            teamHtml = '<br><small style="color:var(--clr-text-muted)">Team: ' + escapeHtml(members) + '</small>';
+        }
+
         return '<tr>' +
             '<td><strong>#' + r.id + '</strong></td>' +
-            '<td>' + escapeHtml(r.student_name) + '</td>' +
+            '<td>' + escapeHtml(r.student_name) + teamHtml + '</td>' +
             '<td>' + escapeHtml(r.email) + '</td>' +
             '<td>' + escapeHtml(r.phone) + '</td>' +
             '<td>' + escapeHtml(r.college) + '</td>' +
