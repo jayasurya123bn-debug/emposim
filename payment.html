@@ -150,10 +150,14 @@
 
                 <!-- QR Code -->
                 <div class="text-center" id="qr-section">
-                    <div class="qr-container">
+                    <div class="qr-container" style="position: relative; display: inline-block;">
                         <img id="qr-code" 
                              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=gtec@upi%26pn=GTEC%20Emposim%26am=100"
                              alt="UPI Payment QR Code">
+                        <!-- Center Logo Overlay -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 6px; border-radius: 4px; font-weight: bold; color: var(--clr-primary); font-size: 0.9rem; z-index: 3; pointer-events: none; box-shadow: 0 0 5px rgba(0,0,0,0.2);">
+                            GTEC
+                        </div>
                     </div>
                     <p class="text-muted mt-sm" style="font-size: 0.8rem;">
                         UPI ID: <strong style="color: var(--clr-accent);">gtec@upi</strong>
