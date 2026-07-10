@@ -13,6 +13,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+    // ---- Auth Check ----
+    if (!sessionStorage.getItem('student_id')) {
+        window.location.href = 'register.html';
+        return;
+    }
 
     // ---- DOM Elements ----
     var minutesEl      = document.getElementById('timer-minutes');

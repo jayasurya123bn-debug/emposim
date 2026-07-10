@@ -11,6 +11,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+    // ---- Auth Check ----
+    if (!sessionStorage.getItem('student_id')) {
+        window.location.href = 'register.html';
+        return;
+    }
 
     var eventsGrid = document.getElementById('events-grid');
 

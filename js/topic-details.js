@@ -12,6 +12,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+    // ---- Auth Check ----
+    if (!sessionStorage.getItem('student_id')) {
+        window.location.href = 'register.html';
+        return;
+    }
 
     // ---- Read selected event from sessionStorage ----
     var eventName  = sessionStorage.getItem('selected_event_name')  || 'Not Selected';
