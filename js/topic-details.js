@@ -28,23 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('detail-fee').textContent   = '₹' + parseFloat(eventFee).toFixed(0);
     document.getElementById('detail-venue').textContent  = eventVenue;
 
-    // ---- Toggle Switch Logic ----
-    var toggle      = document.getElementById('mode-toggle');
-    var labelOnline = document.getElementById('label-online');
-    var labelOffline = document.getElementById('label-offline');
-
-    function updateToggleLabels() {
-        if (toggle.checked) {
-            labelOnline.classList.add('active');
-            labelOffline.classList.remove('active');
-        } else {
-            labelOffline.classList.add('active');
-            labelOnline.classList.remove('active');
-        }
-    }
-
-    toggle.addEventListener('change', updateToggleLabels);
-    updateToggleLabels(); // Set initial state
+    // ---- Toggle Switch Logic (Removed) ----
+    // Toggle UI has been replaced by separate buttons
 
     // ---- If no event selected, redirect back ----
     if (!sessionStorage.getItem('selected_event_name')) {
@@ -56,10 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * Proceed to payment page
  * Saves payment mode to sessionStorage
  */
-function proceedToPayment() {
-    var toggle = document.getElementById('mode-toggle');
-    var paymentMode = toggle.checked ? 'online' : 'offline';
-
-    sessionStorage.setItem('payment_mode', paymentMode);
+function proceedToPayment(mode) {
+    sessionStorage.setItem('payment_mode', mode || 'online');
     window.location.href = 'payment.html';
 }

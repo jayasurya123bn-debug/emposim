@@ -73,28 +73,22 @@
                         <span class="detail-row__label">📍 Venue</span>
                         <span class="detail-row__value" id="detail-venue">—</span>
                     </div>
-                    <div class="detail-row">
-                        <span class="detail-row__label">💳 Payment Mode</span>
-                        <span class="detail-row__value">
-                            <!-- Online/Offline Toggle Switch -->
-                            <div class="toggle-wrapper">
-                                <span class="toggle-label" id="label-offline">Offline</span>
-                                <input type="checkbox" class="toggle" id="mode-toggle" checked>
-                                <span class="toggle-label active" id="label-online">Online</span>
-                            </div>
-                        </span>
-                    </div>
                 </div>
 
                 <!-- Info Notice -->
-                <div class="alert alert--info" style="animation: none;">
-                    ℹ️ Select 'Offline' to pay cash at the venue on the event day, or 'Online' to pay now via UPI.
+                <div class="alert alert--info" style="animation: none; margin-bottom: 1.5rem;">
+                    ℹ️ Choose how you would like to pay for this event:
                 </div>
 
-                <!-- Proceed Button -->
-                <button id="proceed-btn" class="btn btn--primary btn--lg btn--block mt-lg" onclick="proceedToPayment()">
-                    Proceed to Payment →
-                </button>
+                <!-- Proceed Buttons -->
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <button class="btn btn--primary btn--lg btn--block" onclick="proceedToPayment('online')">
+                        Proceed with Online Payment (UPI) →
+                    </button>
+                    <button class="btn btn--lg btn--block" onclick="proceedToPayment('offline')" style="background: transparent; border: 2px solid var(--clr-primary); color: var(--clr-primary); cursor: pointer; border-radius: var(--radius-md); font-weight: 600; transition: all 0.3s ease;">
+                        Proceed with Offline Payment (Cash at Venue) →
+                    </button>
+                </div>
 
                 <!-- Go Back -->
                 <div class="text-center mt-md">
