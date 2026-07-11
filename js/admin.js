@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateForm = document.getElementById('update-form');
     const receiptAnchor = document.getElementById('receipt-anchor');
 
-    // PHP Backend Endpoint URL
-    const API_BASE_URL = 'admin/php';
+    // Vercel Serverless Endpoint URL
+    const API_BASE_URL = '/api';
     let registrations = [];
 
     // Fetch data
     async function fetchRegistrations() {
         try {
-            // Call the actual PHP backend
-            const res = await fetch(\/get_registrations.php);
+            // Call the actual Vercel backend
+            const res = await fetch(`${API_BASE_URL}/get-registrations`);
             const data = await res.json();
             
             if (data.success && data.registrations) {
@@ -74,16 +74,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const tr = document.createElement('tr');
             const badgeClass = r.status === 'approved' ? 'badge--approved' : (r.status === 'rejected' ? 'badge--rejected' : 'badge--pending');
             
-            tr.innerHTML = 
-                <td>#EMP\</td>
-                <td>\</td>
-                <td>\</td>
-                <td>\</td>
-                <td>\</td>
-                <td>\</td>
-                <td><span class="badge \">\</span></td>
-                <td><button type="button" class="btn btn--outline" style="padding: 0.3rem 0.8rem; font-size:0.75rem;" onclick="openModal(\)">Edit</button></td>
-            ;
+            tr.innerHTML = `
+                <td>#EMP${r.id}</td>
+                <td>${r.student_name}</td>
+                <td>${r.email}</td>
+                <td>${r.college}</td>
+                <td>${r.event_topic}</td>
+                <td>${r.phone}</td>
+                <td><span class="badge ${badgeClass}">${r.status}</span></td>
+                <td><button type="button" class="btn btn--outline" style="padding: 0.3rem 0.8rem; font-size:0.75rem;" onclick="openModal(${r.id})">Edit</button></td>
+            `;
             tableBody.appendChild(tr);
         });
     }
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (student.payment_screenshot) {
             // Assuming the screenshot is an absolute URL or relative path
             const screenshotPath = student.payment_screenshot;
-            receiptAnchor.href = screenshotPath.startsWith('http') ? screenshotPath : uploads/\;
+            receiptAnchor.href = screenshotPath.startsWith('http') ? screenshotPath : `uploads/${screenshotPath}`;
             receiptAnchor.textContent = 'View Uploaded Screenshot';
             receiptAnchor.style.pointerEvents = 'auto';
             receiptAnchor.style.opacity = '1';
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('btn--loading');
 
         try {
-            const res = await fetch(\/update_status.php, {
+            const res = await fetch(`${API_BASE_URL}/update-status`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

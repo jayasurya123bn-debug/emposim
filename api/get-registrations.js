@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
     try {
         const result = await sql`
             SELECT id, student_name, email, phone, college, year, department,
-                   event_topic, entry_fee, payment_mode, status, created_at
+                   event_topic, entry_fee, payment_mode, payment_screenshot, status, created_at
             FROM registrations
             ORDER BY
                 CASE status WHEN 'pending' THEN 1 WHEN 'approved' THEN 2 WHEN 'rejected' THEN 3 END,
