@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Emposim 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-lg);
+        }
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .filters {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+        }
+        .filters .form-input, .filters .form-select {
+            width: auto;
+            min-width: 200px;
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            background: var(--clr-glass);
+            border: 1px solid var(--clr-glass-border);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            white-space: nowrap;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--clr-border);
+        }
+        th {
+            background: rgba(0,0,0,0.2);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--clr-accent);
+        }
+        tr:hover {
+            background: rgba(255,255,255,0.02);
+            cursor: pointer;
+        }
+        .badge { font-size: 0.7rem; }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-glass-border);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: var(--space-xl);
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--clr-text-muted);
+            transition: var(--transition);
+        }
+        .modal-close:hover { color: var(--clr-danger); }
+    </style>
+</head>
+<body>
+    <div class="gtec-banner">
+        <div class="gtec-banner__logo"><img src="https://dfhe5ze0n4pxu.cloudfront.net/College/Logos/Logo-1719515861554.jfif" alt="GTEC Logo"></div>
+        <div class="gtec-banner__info">
+            <div class="gtec-banner__name">Ganadipathy Tulsi's Jain Engineering College</div>
+            <div class="gtec-banner__details">Admin Panel — Emposim 2026</div>
+        </div>
+    </div>
+
+    <main class="dashboard-container">
+        <div class="header-actions">
+            <h1 class="text-gradient">Registrations</h1>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn--outline" id="export-pdf-btn">📄 Export PDF</button>
+                <button class="btn btn--accent" id="export-doc-btn">📝 Export DOCX</button>
+            </div>
+        </div>
+
+        <div class="filters">
+            <input type="text" id="search-input" class="form-input" placeholder="Search ID, Name, Email...">
+            <select id="filter-topic" class="form-select">
+                <option value="">All Events</option>
+                <option value="Paper Presentation">Paper Presentation</option>
+                <option value="Coding Challenge">Coding Challenge</option>
+                <option value="Web Design">Web Design</option>
+                <option value="Robotics Workshop">Robotics Workshop</option>
+                <option value="Quiz Competition">Quiz Competition</option>
+                <option value="Hackathon">Hackathon</option>
+            </select>
+            <select id="filter-status" class="form-select">
+                <option value="">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+        </div>
+
+        <div class="table-container slide-up">
+            <table id="registrations-table">
+                <thead>
+                    <tr>
+                        <th>Reg ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>College</th>
+                        <th>Event Topic</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Dynamic Rows Here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Update Modal -->
+    <div class="modal-overlay" id="update-modal">
+        <div class="modal-content">
+            <span class="modal-close" id="close-modal">&times;</span>
+            <h2 class="text-gradient" style="margin-bottom: 1.5rem;">Update Record</h2>
+            <form id="update-form">
+                <input type="hidden" id="modal-id">
+                <div class="form-group">
+                    <label class="form-label">Student Name</label>
+                    <input type="text" id="modal-name" class="form-input" required>
+                </div>
+                <div class="form-group" style="display: flex; gap: 1rem;">
+                    <div style="flex:1;">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="modal-email" class="form-input" required>
+                    </div>
+                    <div style="flex:1;">
+                        <label class="form-label">Phone</label>
+                        <input type="text" id="modal-phone" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">College</label>
+                    <input type="text" id="modal-college" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Payment Receipt</label>
+                    <div id="modal-receipt-link" style="padding: 0.5rem 0;">
+                        <a href="#" target="_blank" id="receipt-anchor" class="text-accent" style="text-decoration: underline;">View Uploaded Screenshot</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Status</label>
+                    <select id="modal-status" class="form-select" required>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn--primary btn--block">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
