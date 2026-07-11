@@ -1,4 +1,4 @@
-﻿// js/admin.js
+// js/admin.js
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('table-body');
     const searchInput = document.getElementById('search-input');
@@ -31,8 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 tableBody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Failed to load registrations</td></tr>';
             }
         } catch (error) {
-            console.error('Error fetching registrations:', error);
-            tableBody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Error fetching registrations</td></tr>';
+            console.warn('Error fetching real DB. Using mock data for local testing.', error);
+            
+            // Fallback mock data when running on file:// or without a PHP server
+            registrations = [
+                { id: 1, student_name: 'Arjun Kumar', email: 'arjun@example.com', phone: '9876543210', college: 'GTEC', event_topic: 'Hackathon', status: 'pending', payment_screenshot: 'demo1.jpg' },
+                { id: 2, student_name: 'Sneha Reddy', email: 'sneha@example.com', phone: '9876543211', college: 'VIT', event_topic: 'Web Design', status: 'approved', payment_screenshot: 'demo2.jpg' },
+                { id: 3, student_name: 'Rahul Sharma', email: 'rahul@example.com', phone: '9876543212', college: 'SRM', event_topic: 'Robotics Workshop', status: 'rejected', payment_screenshot: 'demo3.jpg' }
+            ];
+            renderTable();
+
+            // Display a warning banner to the user that they are in preview mode
+            const header = document.querySelector('.header-actions');
+            if (header && !document.getElementById('mock-warning')) {
+                header.insertAdjacentHTML('afterend', '<div id="mock-warning" style="background:rgba(255, 193, 7, 0.2); border:1px solid var(--clr-warning); color:var(--clr-warning); padding:10px; border-radius:8px; margin-bottom:15px; font-size:0.85rem; font-weight:600;">⚠️ Local Preview Mode: You are viewing this page without a PHP server running (e.g. via file:// protocol). Displaying sample mock data instead of real database records.</div>');
+            }
         }
     }
 
