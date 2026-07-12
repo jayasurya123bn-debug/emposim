@@ -186,33 +186,44 @@ document.addEventListener('DOMContentLoaded', function () {
         uploadBtn.classList.add('btn--loading');
         uploadBtn.disabled = true;
 
-        // Build FormData
-        var formData = new FormData();
-        formData.append('screenshot', selectedFile);
-        formData.append('student_id', sessionStorage.getItem('student_id') || '0');
+        // Convert file to Base64 and upload to Vercel Serverless Function
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var base64String = event.target.result;
+            var studentId = sessionStorage.getItem('student_id') || '0';
 
-        // Upload to backend
-        fetch('php/upload.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-            uploadBtn.classList.remove('btn--loading');
+            fetch('/api/upload-receipt', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    student_id: studentId,
+                    screenshot_base64: base64String
+                })
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                uploadBtn.classList.remove('btn--loading');
 
-            if (data.success) {
+                if (data.success) {
+                    showSuccessScreen();
+                } else {
+                    showAlert(data.message || 'Upload failed. Please try again.', 'error');
+                    uploadBtn.disabled = false;
+                }
+            })
+            .catch(function (err) {
+                uploadBtn.classList.remove('btn--loading');
+                console.error('Upload fetch failed:', err);
+                // Fallback to show success screen anyway so demo is not blocked
                 showSuccessScreen();
-            } else {
-                showAlert(data.message || 'Upload failed. Please try again.', 'error');
-                uploadBtn.disabled = false;
-            }
-        })
-        .catch(function (err) {
+            });
+        };
+        reader.onerror = function() {
             uploadBtn.classList.remove('btn--loading');
-            // Show success anyway for demo (backend may not be running)
-            console.warn('Upload fetch failed (backend may be offline):', err);
-            showSuccessScreen();
-        });
+            uploadBtn.disabled = false;
+            showAlert('Failed to read file.', 'error');
+        };
+        reader.readAsDataURL(selectedFile);
     });
 
     /**

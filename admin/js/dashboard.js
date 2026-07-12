@@ -166,7 +166,11 @@ function renderPayments(data) {
     }
 
     tbody.innerHTML = data.map(function (r) {
-        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://dfhe5ze0n4pxu.cloudfront.net/College/Logos/Logo-1719515861554.jfif';
+        var dbScreenshot = r.payment_screenshot || '';
+        var actualSrc = 'https://dfhe5ze0n4pxu.cloudfront.net/College/Logos/Logo-1719515861554.jfif';
+        if (dbScreenshot) {
+            actualSrc = dbScreenshot.startsWith('data:image') ? dbScreenshot : '../' + escapeHtml(dbScreenshot);
+        }
         var screenshotHtml = '<img class="screenshot-thumb" src="' + actualSrc + '" onclick="openModal(\'' + actualSrc + '\')" alt="Receipt">';
 
         return '<tr>' +
@@ -200,7 +204,11 @@ function renderVerification(data) {
     }
 
     tbody.innerHTML = sorted.map(function (r) {
-        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://dfhe5ze0n4pxu.cloudfront.net/College/Logos/Logo-1719515861554.jfif';
+        var dbScreenshot = r.payment_screenshot || '';
+        var actualSrc = 'https://dfhe5ze0n4pxu.cloudfront.net/College/Logos/Logo-1719515861554.jfif';
+        if (dbScreenshot) {
+            actualSrc = dbScreenshot.startsWith('data:image') ? dbScreenshot : '../' + escapeHtml(dbScreenshot);
+        }
         var screenshotHtml = '<img class="screenshot-thumb" src="' + actualSrc + '" onclick="openModal(\'' + actualSrc + '\')" alt="Receipt">';
 
         var actionsHtml = '';
