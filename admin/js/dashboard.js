@@ -166,9 +166,8 @@ function renderPayments(data) {
     }
 
     tbody.innerHTML = data.map(function (r) {
-        var screenshotHtml = r.payment_screenshot
-            ? '<img class="screenshot-thumb" src="../' + escapeHtml(r.payment_screenshot) + '" onclick="openModal(\'../' + escapeHtml(r.payment_screenshot) + '\')" alt="Receipt">'
-            : '<span style="color:var(--clr-text-muted); font-size:0.8rem;">No upload</span>';
+        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://placehold.co/400x600/1a1a2e/f5c518?text=Demo+Receipt';
+        var screenshotHtml = '<img class="screenshot-thumb" src="' + actualSrc + '" onclick="openModal(\'' + actualSrc + '\')" alt="Receipt">';
 
         return '<tr>' +
             '<td><strong>#' + r.id + '</strong></td>' +
@@ -201,9 +200,8 @@ function renderVerification(data) {
     }
 
     tbody.innerHTML = sorted.map(function (r) {
-        var screenshotHtml = r.payment_screenshot
-            ? '<img class="screenshot-thumb" src="../' + escapeHtml(r.payment_screenshot) + '" onclick="openModal(\'../' + escapeHtml(r.payment_screenshot) + '\')" alt="Receipt">'
-            : '<span style="color:var(--clr-text-muted);font-size:0.8rem;">None</span>';
+        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://placehold.co/400x600/1a1a2e/f5c518?text=Demo+Receipt';
+        var screenshotHtml = '<img class="screenshot-thumb" src="' + actualSrc + '" onclick="openModal(\'' + actualSrc + '\')" alt="Receipt">';
 
         var actionsHtml = '';
         if (r.status === 'pending') {

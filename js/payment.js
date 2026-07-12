@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         proceedBtn.textContent = '✅ I Will Pay at the Venue — Proceed';
     } else {
         // ---- Generate QR with dynamic amount ----
-        var upiString = 'upi://pay?pa=gtec@upi&pn=GTEC%20Emposim&am=' + parseFloat(eventFee).toFixed(2);
+        var upiString = 'upi://pay?pa=8778850438@fam&pn=Emposim&am=' + parseFloat(eventFee).toFixed(2);
         qrCode.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(upiString);
     }
 
