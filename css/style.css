@@ -1140,8 +1140,16 @@ h4 { font-size: 1.25rem; }
         flex-direction: column;
     }
 
+    .header {
+        flex-direction: column;
+        padding: var(--space-sm) var(--space-md);
+        gap: 0.5rem;
+    }
+
     .header__nav {
-        gap: var(--space-md);
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .countdown {
@@ -1174,11 +1182,20 @@ h4 { font-size: 1.25rem; }
     }
 
     .header {
-        padding: var(--space-sm) var(--space-md);
+        padding: var(--space-sm);
     }
 
     .header__logo {
         font-size: 1.05rem;
+    }
+
+    .header__nav {
+        gap: 0.4rem;
+    }
+
+    .header__nav a {
+        font-size: 0.75rem;
+        padding: 0.25rem;
     }
 }
 
