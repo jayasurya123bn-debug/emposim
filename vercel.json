@@ -8,8 +8,6 @@
     { "source": "/admin/php/get_registrations.php", "destination": "/api/get-registrations" },
     { "source": "/admin/php/update_status.php", "destination": "/api/update-status" },
     { "source": "/admin/php/get_payments.php", "destination": "/api/get-registrations" },
-    { "source": "/php/select_topic.php", "destination": "/api/select-topic" },
-    { "source": "/api/alter-db", "destination": "/api/alter-db" },
-    { "source": "/api/upload-receipt", "destination": "/api/upload-receipt" }
+    { "source": "/php/select_topic.php", "destination": "/api/select-topic" }
   ]
 }
