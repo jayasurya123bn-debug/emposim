@@ -13,6 +13,7 @@ module.exports = async function handler(req, res) {
     try {
         const result = await sql`
             SELECT id, student_name, email, phone, college, year, department,
+                   team_member_2, team_member_3, team_member_4,
                    event_topic, entry_fee, payment_mode, payment_screenshot, status, created_at
             FROM registrations
             ORDER BY
