@@ -166,7 +166,7 @@ function renderPayments(data) {
     }
 
     tbody.innerHTML = data.map(function (r) {
-        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://placehold.co/400x600/1a1a2e/f5c518?text=Demo+Receipt';
+        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://dfhe5ze0n4pxu.cloudfront.net/College/Logos/Logo-1719515861554.jfif';
         var screenshotHtml = '<img class="screenshot-thumb" src="' + actualSrc + '" onclick="openModal(\'' + actualSrc + '\')" alt="Receipt">';
 
         return '<tr>' +
@@ -200,7 +200,7 @@ function renderVerification(data) {
     }
 
     tbody.innerHTML = sorted.map(function (r) {
-        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://placehold.co/400x600/1a1a2e/f5c518?text=Demo+Receipt';
+        var actualSrc = r.payment_screenshot ? '../' + escapeHtml(r.payment_screenshot) : 'https://dfhe5ze0n4pxu.cloudfront.net/College/Logos/Logo-1719515861554.jfif';
         var screenshotHtml = '<img class="screenshot-thumb" src="' + actualSrc + '" onclick="openModal(\'' + actualSrc + '\')" alt="Receipt">';
 
         var actionsHtml = '';
